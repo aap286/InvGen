@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/homestyle.css') }}" >
+    <title>Home Page</title>
+</head>
+<body> 
+    <div class="parent">
+        <form method="POST" class="formBody" enctype="multipart/form-data" >
+        <div class="form">
+            <div class="entry">
+                <h1>Invoice Generation</h1>
+            </div>
+                <div class="entry">
+                    <label for="Upload Excel file">Upload Excel file<label>
+                </div>
+                <div class="box">
+                    <input type="file" id="Upload Excel file" name="file" class="file" accept=".xlsx" >
+                </div>
+                <div class="entry">
+                    <label for="invoiceDate">Invoice Date</label>
+                </div>
+                <div class="box">
+                <input type="date" id="invoiceDate" name="invoiceDate" placeholder="dd/mm/yyyy">
+                </div>
+                
+                <div class="entry">
+                    <label for="year">Invoice year</label>
+                </div>
+                <div class="box">
+                    <input type="text" id="year" name="year" placeholder="20XX-XX">
+                </div>
+                <div class="entry">
+                    <label for="period">Invoice Period</label>
+                </div>
+                <div class="box">
+                    <input type="text" id="period" name="period" placeholder="01 Apr'2022 to 31 Mar'2023">
+                </div>
+                <div class="box">
+                    <button class="button" onclick="loading()">Submit </button>
+                </div>
+        </div>
+
+        <div class="email">
+            <div class="section">
+                <div class="entry-sub">
+                        <label for="subject">Email Subject</label>
+                </div>
+                <div class="box-sub">
+                        <input type="text" id="subject" name="subject" placeholder="Invoice">
+                </div>
+            </div>
+            <div class="msg-section">
+                <div class="entry-msg">
+                    <label for="message">Email Body</label>
+                </div>
+                <div class="box-msg">
+                    <textarea type="text" id="message" name="message" placeholder="Here is your invoice."></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div id="loadingScreen">
+        <h1>Invoices are been Generated...</h1>
+         <div id="container">
+  <svg viewBox="0 0 100 100">
+    <defs>
+      <filter id="shadow">
+        <feDropShadow dx="0" dy="0" stdDeviation="1.5" 
+          flood-color="#fc6767"/>
+      </filter>
+    </defs>
+    <circle id="spinner" style="fill:transparent;stroke:#1d3557;;stroke-width: 7px;stroke-linecap: round;" cx="50" cy="50" r="45"/>
+</svg>
+</div>
+    </div>
+    <script>
+        function loading(){
+            var formBody = document.getElementsByClassName("formBody")
+            var loadingScreen = document.getElementById("loadingScreen");
+            formBody[0].style.transition = "opacity 1.2s ease";
+            formBody[0].style.opacity = 0;
+            
+            setTimeout(() => {
+                formBody[0].style.display = "none"; 
+                loadingScreen.style.display = "block";
+                loadingScreen.style.transition = "opacity 1.5s ease";
+                loadingScreen.style.opacity = 1;
+            }, 1000);
+        }     
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/outputstyle.css') }}" >
+    <title>Output</title>
+</head>
+<body>
+    
+    <body>
+        <table>
+            <tr>
+                <th colspan="4">Oxford Village Condominium</th>
+            </tr>
+            <tr>
+                <th colspan="4">Wanwadi, Pune - 411 040</th>
+            </tr>
+            <tr>
+                <th colspan="4">Invoice for Maintenance Charges for FY {{year}}</th>
+            </tr>
+            <tr id="heading">
+                <td class="first" id="annex">Inv. No</td>
+                <td class="second">{{index}}</td>
+                <td class="four" id="annex">Date:</td>
+                <td class="five"  id="annex">{{invoiceDate}}</td>
+            </tr>
+            <tr id="heading">
+                <td  class="first" id="annex">Name:</td>
+                <td class="second">{{name}}</td>
+                <td class="annex">Aptmt/B no.</td>
+                <td class="annex">{{aptNo}}</td>
+            </tr>
+            <tr id="heading">
+                <td class="annex">Period:</td>
+                <td class="second">{{period}}</td>
+                <td class="annex">Status:</td>
+                <td class="annex">{{status}}</td>
+            </tr>
+            <tr id="heading">
+                <td></td>
+                <td class="second"></td>
+                <td class="annex">Corpus Paid:</td>
+                <td class="annex">{{corpus}}</td>
+            </tr>
+
+            <tr class="subheading">
+                <td class="annex">A</td>
+                <td class="second">Item</td>
+                <td class="annex">Rate</td>
+                <td class="annex">Amount Rs.</td>
+            </tr>
+
+            <tr id="heading">
+                <td class="annex">A1</td>
+                <td class="second">{{itemNamesA[0]}}</td>
+                <td class="annex"></td>
+                <td class="annex"></td>
+            </tr>
+
+            <tr>
+                <td class="annex">1</td>
+                <td class="second">{{itemName[1]}}</td>
+                <td class="annex">{{config[0]}}</td>
+                <td class="annex">{{item[1]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">2</td>
+                <td class="second">{{itemName[2]}}</td>
+                <td class="annex">{{config[1]}}%</td>
+                <td class="annex">({{item[2]}})</td>
+            </tr>
+            <tr>
+                <td class="annex">3</td>
+                <td class="second">{{itemName[3]}}</td>
+                <td class="annex">{{config[3]}}%</td>
+                <td class="annex">{{item[3]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">4</td>
+                <td class="second">{{itemName[4]}}</td>
+                <td class="annex">(1-2+3)</td>
+                <td class="annex">{{item[4]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">5</td>
+                <td class="second">{{itemName[5]}}</td>
+                <td class="annex">{{config[2]}}</td>
+                <td class="annex">{{item[5]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">6</td>
+                <td class="second">{{itemName[6]}}</td>
+                <td class="annex">(See note-1)</td>
+                <td class="annex">{{item[6]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">7</td>
+                <td class="second">{{itemName[7]}}</td>
+                <td class="annex"></td>
+                <td class="annex">{{item[7]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">8</td>
+                <td class="second">{{itemName[8]}}</td>
+                <td class="annex"></td>
+                <td class="annex">{{item[8]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">9</td>
+                <td class="second">{{itemName[9]}}</td>
+                <td class="annex">(4+5+6+7+8)</td>
+                <td class="annex">{{item[9]}}</td>
+            </tr>
+            <tr id="heading">
+                <td class="annex">A2</td>
+                <td class="second">{{itemNamesA[1]}}</td>
+                <td></td>
+                <td class="annex"></td>
+            </tr>
+
+            {% for i in range(10, 16) %}
+
+            <tr>
+                <td class="annex">{{i}}</td>
+                <td class="second">{{itemName[i]}}</td>
+                {% if item[i] != '-' %}
+                <td class="annex">(Ref Annex-1)</td>
+                {%else %}
+                <td class="annex"></td>
+                {% endif %}
+                <td class="annex">{{item[i]}}</td>
+            </tr>
+
+            {% endfor %}
+            
+            <tr>
+                <td class="annex">16</td>
+                <td class="second">{{itemName[16]}}</td>                
+                <td class="annex">{{config[8]}}%</td>
+                <td class="annex">{{item[16]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">17</td>
+                <td class="second">{{itemName[17]}}</td>
+                <td class="annex">{{config[9]}}%</td>
+                <td class="annex">{{item[17]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">18</td>
+                <td class="second">Total Arrears (A2)</td>
+                <td class="annex">Sum(10 to 17)</td>
+                <td class="annex">{{item[18]}}</td>
+            </tr>
+
+            <tr>
+                <td class="annex">19</td>
+                <td class="second">{{itemName[19]}}</td>
+                <td class="annex">(9+18)</td>
+                <td class="annex">{{item[19]}}</td>
+            </tr>
+
+            <tr class="subheading">
+                <td class="annex">B</td>
+                <td class="second">If Paid Before {{invoiceDateDue}}</td>
+                <td></td>
+                <td class="annex"></td>
+            </tr>
+            <tr>
+                <td class="annex">20</td>
+                <td class="second">{{itemName[20]}}</td>
+                <td></td>
+                <td class="annex">{{item[20]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">21</td>
+                <td class="second">{{itemName[21]}}</td>
+                <td class="annex">{{config[5]}}%</td>
+                <td class="annex">{{item[21]}}</td>
+            </tr>
+            <tr>
+                <td class="annex">22</td>
+                <td class="second">{{itemName[22]}}</td>
+                <td class="annex">{{config[5]}}%</td>
+                <td class="annex">{{item[22]}}</td>
+            </tr>
+        
+            <tr class="subheading">
+                <td class="annex">C</td>
+                <td class="second">Payment Schedule if Paid After {{invoiceDateDue}}</td>
+                <td class="annex">(Ref Annex-2)</td>
+                <td class="annex">Amount Rs.</td>
+            </tr>
+            
+            {% for i in range(23, 34) %}
+
+            <tr>
+                <td class="annex">{{i}}</td>
+                <td class="second">{{itemName[i]}}</td>
+                <td class="annex"></td>
+                <td class="annex">{{item[i]}}</td>
+            </tr>
+
+            {% endfor %}
+
+            
+        </table>
+        <b> Note-1 :</b>    Tenant occupancy for 15 days (01Apr'22 to 15Apr'22) <br>
+        Supplementary invoice will be raise for tenant occupancy if any during later months of {{year}}
+    </body>
+        
+</body>
+</html>
